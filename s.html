@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>STERLA - ALL FEATURES 100% FIXED</title>
+<title>STERLA - LOGIN FIXED</title>
 <style>
 :root{
 --black:#0b0b0d; --card:#111216; --light-blue:#84d2ff; --light-purple:#c2b3ff;
@@ -158,14 +158,13 @@ html,body{height:100%;margin:0;background:linear-gradient(180deg,#0b0b0d 0%,#0f1
 </div>
 
 <script>
-// GLOBAL STATE - FIXED
+// GLOBAL STATE
 let userName = 'Guest', userRole = 'Guest';
 let selectedSubject = null, chosenTopic = null;
 
-// ALL SUBJECTS - FLAT LIST FOR EASY ACCESS
+// ALL SUBJECTS
 const subjects = ["Grammar","Formal Letter","Speech","Prose","Algebra","Linear Equations","Mensuration","Reproduction in Animals","Sound","Electricity","1857 Revolt","Resources","Judiciary","Vyakaran","Patra Lekhan","HTML","AI Basics","Shabd Roop","Dhatu Roop","French Grammar","Culture","Networks","Cybersecurity"];
 
-// FIXED - FLAT TOPIC MAPPING
 const subjectTopics = {
 "Grammar": ["Grammar"], "Formal Letter": ["Formal Letter"], "Speech": ["Speech"], "Prose": ["Prose"],
 "Algebra": ["Algebra"], "Linear Equations": ["Linear Equations"], "Mensuration": ["Mensuration"],
@@ -176,7 +175,6 @@ const subjectTopics = {
 "Culture": ["Culture"], "Networks": ["Networks"], "Cybersecurity": ["Cybersecurity"]
 };
 
-// FIXED FLOWCHART DATA - PROPER STRUCTURE
 const flowchartBank = {
 "Grammar":["Parts of Speech","Sentence Structure","Tenses","Punctuation","Usage Rules"],
 "Formal Letter":["Sender Address","Date","Receiver Address","Subject","Salutation","Body Paragraphs","Closing"],
@@ -203,7 +201,6 @@ const flowchartBank = {
 "Cybersecurity":["Threats","Firewall","Antivirus","Safe Practices","Case Studies"]
 };
 
-// FIXED QUIZ BANK - PROPER STRUCTURE
 const quizBank = {
 "Grammar":[
 { q:"Which of the following is a noun?", options:["run","dog","quickly","beautiful"], answer:"dog" },
@@ -231,7 +228,6 @@ const quizBank = {
 ]
 };
 
-// FIXED WORKSHEET BANK
 const wsBank = {
 "Grammar":["1. Write 5 nouns.","2. Write 5 verbs.","3. Identify parts of speech.","4. Form 5 adverbs.","5. Write 3 complex sentences."],
 "Formal Letter":["1. Write formal letter to principal.","2. Draft letter to bank manager.","3. Compose letter to editor.","4. Draft complaint letter.","5. Write letter to teacher."],
@@ -241,23 +237,46 @@ const wsBank = {
 "Electricity":["1. Draw simple circuit","2. Ohm's law calculation","3. Identify series circuit","4. Identify parallel circuit","5. Name safety devices"]
 };
 
-// LOGIN - FIXED
+// LOGIN - 100% FIXED
 function onLogin(guest=false){
+  const loginPage = document.getElementById('loginPage');
+  const appPage = document.getElementById('appPage');
   const msgEl = document.getElementById('loginMessage');
+  const welcomeUser = document.getElementById('welcomeUser');
+  
   msgEl.textContent = '';
+  
   if(!guest){
-    const role = document.getElementById('roleSelect').value;
-    if(!role){ msgEl.textContent = 'Select role'; return; }
-    userName = role + ' User'; userRole = role;
+    const roleSelect = document.getElementById('roleSelect');
+    const role = roleSelect.value;
+    if(!role){
+      msgEl.textContent = 'Please select Student or Teacher';
+      msgEl.style.display = 'block';
+      return;
+    }
+    userName = role + ' User';
+    userRole = role;
+  } else {
+    userName = 'Guest';
+    userRole = 'Guest';
   }
-  document.getElementById('loginPage').style.display = 'none';
-  document.getElementById('appPage').style.display = 'flex';
-  document.getElementById('welcomeUser').textContent = userName;
+  
+  // HIDE LOGIN, SHOW APP, SET ACTIVE PAGE
+  loginPage.style.display = 'none';
+  appPage.style.display = 'flex';
+  welcomeUser.textContent = userName;
+  
+  // ENSURE HOMEPAGE IS ACTIVE
+  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+  document.getElementById('homePage').classList.add('active');
+  document.querySelector('.nav-btn[data-page="homePage"]').classList.add('active');
+  
+  // LOAD SUBJECTS & SHOW TOAST
   loadSubjects();
-  showToast('Welcome ' + userName + '!', 'success');
+  showToast('Welcome ' + userName + '! 🎉', 'success');
 }
 
-// NAVIGATION - FIXED
+// REST OF FUNCTIONS (unchanged)
 function navigate(e){
   document.querySelectorAll('.nav-btn').forEach(btn=>btn.classList.remove('active'));
   e.currentTarget.classList.add('active');
@@ -272,20 +291,23 @@ function navigate(e){
   if(pageId === 'wsPage') loadWorksheet();
 }
 
-// SUBJECTS - FIXED
 function loadSubjects(){
   const quick = document.getElementById('subjectsQuick');
   const list = document.getElementById('subjectsList');
   quick.innerHTML = ''; list.innerHTML = '';
   
-  subjects.forEach(subject => {
-    if(subjectTopics[subject]){ // Only show subjects with topics
+  subjects.slice(0, 8).forEach(subject => {
+    if(subjectTopics[subject]){
       const btnQuick = document.createElement('button');
       btnQuick.className = 'subject-card';
       btnQuick.textContent = subject;
       btnQuick.onclick = () => selectSubject(subject);
       quick.appendChild(btnQuick);
-      
+    }
+  });
+  
+  subjects.forEach(subject => {
+    if(subjectTopics[subject]){
       const btnList = document.createElement('button');
       btnList.className = 'subject-card';
       btnList.textContent = subject;
@@ -320,7 +342,6 @@ function renderTopics(){
   });
 }
 
-// FLOWCHART - FULLY FIXED
 function updateFlowchartTopics(){
   const select = document.getElementById('flowTopicSelect');
   if(!selectedSubject || !subjectTopics[selectedSubject]){
@@ -395,7 +416,6 @@ function generateFlowchart(){
   showToast(`Beautiful flowchart for ${topic}! ✨`, 'success');
 }
 
-// QUIZ - FULLY FIXED
 function loadQuiz(){
   const statusEl = document.getElementById('quizStatus');
   const outputEl = document.getElementById('quizOutput');
@@ -443,7 +463,6 @@ function checkAnswer(qIndex, selected, btn){
   btn.style.pointerEvents = 'none';
 }
 
-// WORKSHEET - FULLY FIXED
 function loadWorksheet(){
   const statusEl = document.getElementById('wsStatus');
   const outputEl = document.getElementById('wsOutput');
