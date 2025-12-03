@@ -165,37 +165,169 @@ let selectedSubject = null, chosenTopic = null;
 // SUBJECTS
 const subjects = ["Grammar","Algebra","HTML","Electricity","Formal Letter","Speech","Prose","Linear Equations","Mensuration","Sound"];
 const subjectTopics = {
-"Grammar": ["Grammar"], "Algebra": ["Algebra"], "HTML": ["HTML"], "Electricity": ["Electricity"],
-"Formal Letter": ["Formal Letter"], "Speech": ["Speech"], "Prose": ["Prose"], 
-"Linear Equations": ["Linear Equations"], "Mensuration": ["Mensuration"], "Sound": ["Sound"]
+"English":["Grammar","Formal Letter","Speech","Prose"],
+"Math":["Algebra","Linear Equations","Mensuration"],
+"Science":["Reproduction in Animals","Sound","Electricity"],
+"Social Science":["1857 Revolt","Resources","Judiciary"],
+"Hindi":["Vyakaran","Patra Lekhan"],
+"Computer":["HTML","AI Basics"],
+"Sanskrit":["Shabd Roop","Dhatu Roop"],
+"French":["French Grammar","Culture"],
+"ICT":["Networks","Cybersecurity"]
 };
 
 // FLOWCHART DATA - COMPLETE
-const flowchartData = {
-"Grammar": ['Parts of Speech', 'Nouns & Pronouns', 'Verbs & Tenses', 'Adjectives', 'Sentence Structure', 'Punctuation'],
-"Algebra": ['Variables', 'Expressions', 'Equations', 'Solving Methods', 'Word Problems', 'Graphing'],
-"HTML": ['DOCTYPE', 'Head Section', 'Body Structure', 'Elements & Tags', 'Attributes', 'Semantic HTML'],
-"Electricity": ['Current', 'Voltage', 'Resistance', 'Ohm\'s Law', 'Circuits', 'Safety'],
-"Formal Letter": ['Sender Address', 'Date', 'Receiver Address', 'Subject', 'Salutation', 'Body', 'Closing']
+const flowchartBank = {
+"Grammar":["Parts of Speech","Sentence Structure","Tenses","Punctuation","Usage Rules"],
+"Formal Letter":["Sender Address","Date","Receiver Address","Subject","Salutation","Body Paragraphs","Closing"],
+"Speech":["Introduction","Body Points","Conclusion","Eye Contact","Gestures","Voice Modulation"],
+"Prose":["Paragraphs","Characters","Storyline","Dialogue","Narrative Flow"],
+"Algebra":["Expressions","Equations","Formulas","Solve for Unknowns","Linear & Quadratic"],
+"Linear Equations":["Variables","Equation Form","Graph Representation","Substitution","Elimination"],
+"Mensuration":["Area","Perimeter","Volume","Surface Area","Formulas"],
+"Reproduction in Animals":["Sexual Reproduction","Asexual Reproduction","Human Systems","Fertilization","Development"],
+"Sound":["Vibration","Pitch","Amplitude","Frequency","Reflection"],
+"Electricity":["Electric Charge","Ohm's Law","Circuits","Series & Parallel","Safety Devices"],
+"1857 Revolt":["Causes","Key Leaders","Events","Outcome","Lessons Learned"],
+"Resources":["Renewable","Non-renewable","Conservation","Sustainability","Examples"],
+"Judiciary":["Supreme Court","High Court","Lower Courts","Judges","Rights Protection"],
+"Vyakaran":["Sandhi","Samas","Ling","Vachya","Tense & Vachan"],
+"Patra Lekhan":["Formal Letter","Informal Letter","Sender & Receiver","Salutation","Closing"],
+"HTML":["Tags","Attributes","Headings","Paragraphs","Links & Images"],
+"AI Basics":["Narrow AI","General AI","Applications","Data & Algorithms","Automation"],
+"Shabd Roop":["Singular/Plural","Gender Changes","Case Forms","Usage","Verb Forms"],
+"Dhatu Roop":["Root Verb Forms","Tenses","Sentence Construction","Examples","Practice"],
+"French Grammar":["Articles","Nouns","Adjectives","Verbs","Tenses"],
+"Culture":["Festivals","Food","Music","Lifestyle","Etiquette"],
+"Networks":["LAN","WAN","Topology","Devices","Protocols"],
+"Cybersecurity":["Threats","Firewall","Antivirus","Safe Practices","Case Studies"]
 };
 
+
 // QUIZ BANK
-const quizBank = {
-"Grammar": [{q: "How many parts of speech?", options: ["8", "5", "10"], answer: "8"}],
-"Algebra": [{q: "x+5=10, x=?", options: ["5", "15", "-5"], answer: "5"}],
-"HTML": [{q: "HTML stands for?", options: ["HyperText Markup Language", "HighText Machine Language"], answer: "HyperText Markup Language"}],
-"Electricity": [{q: "V=IR is?", options: ["Ohm's Law", "Newton's Law"], answer: "Ohm's Law"}],
-"Formal Letter": [{q: "First in formal letter?", options: ["Sender address", "Date"], answer: "Sender address"}]
+"Grammar":[
+{ q:"Which of the following is a noun?", options:["run","dog","quickly","beautiful"], answer:"dog" },
+{ q:"Identify the verb in the sentence.", options:["is","happy","table","red"], answer:"is" },
+{ q:"What is an adjective?", options:["A describing word","A doing word","A place","A person"], answer:"A describing word" }
+],
+"Formal Letter":[
+{q:"Which salutation is correct?", options:["Dear Sir","Hi buddy","Hey","Yo"], answer:"Dear Sir"},
+{q:"Where does the date appear?", options:["Top right","Bottom left","Middle","Nowhere"], answer:"Top right"}
+],
+"Speech":[
+{q:"Opening of speech should be?", options:["Attention grabber","Random word","Slang","Silent start"], answer:"Attention grabber"},
+{q:"How to conclude speech?", options:["Summarize & end memorably","Stop abruptly","Say random joke","Ignore"], answer:"Summarize & end memorably"}
+],
+"Prose":[
+{q:"Prose is written in?", options:["Ordinary grammatical structure","Verse form","Poetry","Haiku"], answer:"Ordinary grammatical structure"},
+{q:"Does prose contain verses?", options:["No","Yes","Sometimes","Only poems"], answer:"No"}
+],
+"Algebra":[
+{q:"Solve x + 5 = 12", options:["x=7","x=17","x=5","x=12"], answer:"x=7"},
+{q:"Simplify 2x + 3x", options:["5x","6x","x","2x"], answer:"5x"}
+],
+"Linear Equations":[
+{q:"Solve 2x + 3 = 7", options:["x=2","x=5","x=3","x=1"], answer:"x=2"},
+{q:"Equation y = 2x + 1 forms?", options:["Straight line","Curve","Circle","Random"], answer:"Straight line"}
+],
+"Mensuration":[
+{q:"Find area of rectangle 5x7 cm?", options:["35","12","57","None"], answer:"35"},
+{q:"Volume of cube side 4cm?", options:["64","16","12","8"], answer:"64"}
+],
+"Reproduction in Animals":[
+{q:"Two types of reproduction?", options:["Sexual & Asexual","Only sexual","Only asexual","None"], answer:"Sexual & Asexual"},
+{q:"Fertilization occurs in?", options:["Animals & plants","Only animals","Only plants","None"], answer:"Animals & plants"}
+],
+"Sound":[
+{q:"Sound is?", options:["Vibration","Color","Light","Force"], answer:"Vibration"},
+{q:"Speed of sound depends on?", options:["Medium","Color","Shape","Time"], answer:"Medium"}
+],
+"Electricity":[
+{q:"Ohm's law formula?", options:["V=IR","V+IR","VI=R","None"], answer:"V=IR"},
+{q:"Series circuit has?", options:["Same current","Same voltage","Both","None"], answer:"Same current"}
+],
+"1857 Revolt":[
+{q:"First War of Independence year?", options:["1857","1757","1947","1800"], answer:"1857"},
+{q:"Leader of revolt?", options:["Mangal Pandey","Nehru","Gandhi","Tipu Sultan"], answer:"Mangal Pandey"}
+],
+"Resources":[
+{q:"Renewable resource example?", options:["Solar energy","Coal","Oil","Gas"], answer:"Solar energy"},
+{q:"Non-renewable resource?", options:["Coal","Sunlight","Wind","Water"], answer:"Coal"}
+],
+"Judiciary":[
+{q:"Highest court in India?", options:["Supreme Court","High Court","District Court","None"], answer:"Supreme Court"},
+{q:"Independent judiciary protects?", options:["Rights","Money","Food","Vehicles"], answer:"Rights"}
+],
+"Vyakaran":[
+{q:"Sandhi is?", options:["Joining of words","Verb","Noun","Adjective"], answer:"Joining of words"},
+{q:"Correct gender usage?", options:["Masculine/Feminine","Singular only","Plural only","None"], answer:"Masculine/Feminine"}
+],
+"Patra Lekhan":[
+{q:"Formal letter closing?", options:["Yours sincerely","Bye","Cheers","Later"], answer:"Yours sincerely"},
+{q:"Should slang be used?", options:["No","Yes","Sometimes","Optional"], answer:"No"}
+],
+"HTML":[
+{q:"HTML stands for?", options:["HyperText Markup Language","HighText Modern Language","Hyper Tool Markup Language","None"], answer:"HyperText Markup Language"},
+{q:"Tag for paragraph?", options:["<p>","<h1>","<img>","<a>"], answer:"<p>"}
+],
+"AI Basics":[
+{q:"AI stands for?", options:["Artificial Intelligence","Automated Input","Artificial Interface","None"], answer:"Artificial Intelligence"},
+{q:"Narrow AI example?", options:["Chatbot","Self-driving car","Human brain","All"], answer:"Chatbot"}
+],
+"Shabd Roop":[
+{q:"Shabd Roop studies?", options:["Word forms","Colors","Animals","Numbers"], answer:"Word forms"},
+{q:"Helps in?", options:["Sentence formation","Cooking","Music","Painting"], answer:"Sentence formation"}
+],
+"Dhatu Roop":[
+{q:"Dhatu Roop is about?", options:["Verb roots","Nouns","Adjectives","Adverbs"], answer:"Verb roots"},
+{q:"Used for?", options:["Sentence construction","Painting","Drawing","Music"], answer:"Sentence construction"}
+],
+"French Grammar":[
+{q:"French grammar includes?", options:["Articles, nouns, verbs","Colors","Music","Dance"], answer:"Articles, nouns, verbs"},
+{q:"Tense example?", options:["Present","Past","Future","All"], answer:"All"}
+],
+"Culture":[
+{q:"French culture includes?", options:["Traditions, food, art","Cars","Technology","Animals"], answer:"Traditions, food, art"},
+{q:"Helps in?", options:["Communication","Sports","Mathematics","Physics"], answer:"Communication"}
+],
+"Networks":[
+{q:"Network connects?", options:["Computers","People","Books","Animals"], answer:"Computers"},
+{q:"Purpose?", options:["Share data","Cook","Sleep","Run"], answer:"Share data"}
+],
+"Cybersecurity":[
+{q:"Cybersecurity protects?", options:["Computers & networks","Plants","Animals","Buildings"], answer:"Computers & networks"},
+{q:"Threat example?", options:["Hacking","Cooking","Running","Painting"], answer:"Hacking"}
+]
 };
+
 
 // WORKSHEET BANK
 const wsBank = {
-"Grammar": ["Write 5 sentences with different tenses"],
-"Algebra": ["Solve 5 equations"],
-"HTML": ["Create a webpage"],
-"Electricity": ["Draw a circuit"],
-"Formal Letter": ["Write a letter to principal"]
+"Grammar":["1. Write 5 nouns.","2. Write 5 verbs.","3. Identify parts of speech.","4. Form 5 adverbs.","5. Write 3 complex sentences."],
+"Formal Letter":["1. Write a formal letter to principal.","2. Draft letter to bank manager.","3. Compose letter to editor.","4. Draft complaint letter.","5. Write letter to teacher."],
+"Speech":["1. Write a 2-minute speech on pollution.","2. Speech on importance of education.","3. Speech on health and hygiene.","4. Speech on computer usage.","5. Speech on favorite hobby."],
+"Prose":["1. Read passage & answer questions.","2. Summarize paragraph.","3. Identify main idea.","4. Write continuation.","5. Identify characters."],
+"Algebra":["1. Solve 5x + 3 = 18","2. Factor x^2 + 7x + 12","3. Simplify 4x + 9x","4. Solve 3x - 8 = 10","5. Form expression for sum of 2 numbers."],
+"Linear Equations":["1. Solve 2x + 5 = 15","2. Solve 3x - y = 6","3. Draw line y = x + 2","4. Solve 4x + 3y = 12","5. Apply elimination method."],
+"Mensuration":["1. Area of rectangle 5x7 cm","2. Perimeter of square 6 cm","3. Volume of cube 4 cm","4. Surface area of cylinder r=3,h=7","5. Circumference of circle r=5cm"],
+"Reproduction in Animals":["1. Draw human reproductive system","2. Explain fertilization","3. Define binary fission","4. Define budding","5. List types of reproduction"],
+"Sound":["1. Draw wave diagram","2. Define frequency","3. Define amplitude","4. Explain echo","5. Speed of sound in water"],
+"Electricity":["1. Draw simple circuit","2. Ohm’s law calculation","3. Identify series circuit","4. Identify parallel circuit","5. Name safety devices"],
+"1857 Revolt":["1. List causes","2. Name key leaders","3. Write main events","4. Outcome of revolt","5. Lessons learned"],
+"Resources":["1. List renewable resources","2. List non-renewable resources","3. Explain conservation","4. Importance of water conservation","5. Forest conservation examples"],
+"Judiciary":["1. Write role of Supreme Court","2. High Court duties","3. Lower court examples","4. Judge responsibilities","5. Importance of independent judiciary"],
+"Vyakaran":["1. Examples of Sandhi","2. Examples of Samas","3. Correct gender usage","4. Singular/dual/plural examples","5. Correct tense sentences"],
+"Patra Lekhan":["1. Write formal letter to principal","2. Write informal letter to friend","3. Include sender & receiver","4. Use proper salutation","5. End with signature"],
+"HTML":["1. Create simple HTML page","2. Add headings & paragraphs","3. Insert image","4. Add hyperlink","5. Create list items"],
+"AI Basics":["1. List types of AI","2. Example of narrow AI","3. Example of general AI","4. AI application in healthcare","5. AI in education"],
+"Shabd Roop":["1. Write singular/plural forms","2. Change gender of words","3. Correct case","4. Form words for verbs","5. Use in sentences"],
+"Dhatu Roop":["1. Write root verb forms","2. Present tense","3. Past tense","4. Future tense","5. Make sentences using verb"],
+"French Grammar":["1. Write 5 nouns","2. Write 5 adjectives","3. Conjugate 3 verbs","4. Form simple sentences","5. Translate sentences"],
+"Culture":["1. List French festivals","2. Describe French food","3. Famous French musicians","4. Social etiquette","5. Daily life in France"],
+"Networks":["1. Draw simple network diagram","2. Explain types of networks","3. Define LAN & WAN","4. Identify network devices","5. Network examples"],
+"Cybersecurity":["1. List common cyber threats","2. Define firewall","3. Explain antivirus software","4. Safety tips online","5. Case study of hacking"]
 };
+
 
 // LOGIN
 function onLogin(guest=false){
